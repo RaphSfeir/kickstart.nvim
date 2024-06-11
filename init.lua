@@ -870,6 +870,18 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+  {
+    'EdenEast/nightfox.nvim',
+    options = {
+      transparent = true,
+      styles = {
+        comments = 'italic',
+        keywords = 'bold',
+        types = 'italic,bold',
+      },
+    },
+  },
+  { 'rose-pine/neovim', name = 'rose-pine' },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

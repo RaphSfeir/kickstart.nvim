@@ -599,6 +599,18 @@ require('lazy').setup({
             },
           },
         },
+        -- Add Lexical for Elixir
+        lexical = {
+          cmd = { 'lexical' }, -- or full path if not in $PATH
+          filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+          root_dir = require('lspconfig').util.root_pattern('mix.exs', '.git'),
+          settings = {
+            elixir = {
+              dialyzerEnabled = true,
+              fetchDeps = false,
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed

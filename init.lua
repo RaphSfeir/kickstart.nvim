@@ -87,6 +87,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+require 'raphy'
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -102,7 +104,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -174,7 +176,15 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>em', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>eq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Switch back to Explore mode (:Ex)' })
+vim.keymap.set('n', '<leader>w', vim.cmd.w, { desc = 'Write current buffer to file (:w)' })
+vim.keymap.set('n', '<leader>t', vim.cmd.vsplit, { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = '[Q]uit current buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -698,6 +708,18 @@ require('lazy').setup({
             },
           },
         },
+        -- Add Lexical for Elixir
+        lexical = {
+          cmd = { 'lexical' }, -- or full path if not in $PATH
+          filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+          root_dir = require('lspconfig').util.root_pattern('mix.exs', '.git'),
+          settings = {
+            elixir = {
+              dialyzerEnabled = true,
+              fetchDeps = false,
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -963,6 +985,18 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'EdenEast/nightfox.nvim',
+    options = {
+      transparent = true,
+      styles = {
+        comments = 'italic',
+        keywords = 'bold',
+        types = 'italic,bold',
+      },
+    },
+  },
+  { 'rose-pine/neovim', name = 'rose-pine' },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

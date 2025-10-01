@@ -161,7 +161,9 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+-- vim.o.scrolloff = 10
+-- Center scroll
+vim.opt.scrolloff = 999
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -184,6 +186,9 @@ vim.keymap.set('n', '<leader>eq', vim.diagnostic.setloclist, { desc = 'Open diag
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Switch back to Explore mode (:Ex)' })
 vim.keymap.set('n', '<leader>w', vim.cmd.w, { desc = 'Write current buffer to file (:w)' })
 vim.keymap.set('n', '<leader>t', vim.cmd.vsplit, { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>h', vim.cmd.split, { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>mt', ':!mix test<cr>', { desc = 'mix test' })
+vim.keymap.set('n', '<leader>md', ':!mix hex.publish --organization constella --replace', { desc = 'mix test' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = '[Q]uit current buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
